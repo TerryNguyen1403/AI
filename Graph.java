@@ -1,16 +1,15 @@
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class Graph {
     /*Khởi tạo Hashmap để lưu các cặp
       Key và Value của đồ thị */
     private final Map<String, List<String>> adjList;
+    private final Map<String, String> parent;
 
     //Tạo constructor
     public Graph(){
         this.adjList = new HashMap<>();
+        this.parent = new HashMap<>();
     }
 
     //Tạo phương thức thêm các đỉnh của đồ thị
@@ -39,7 +38,45 @@ public class Graph {
         adjList.get(destination).add(source);
     }
 
-    //Khởi tạo phương thức xuất kết quả ra màn hình
+    public boolean DLS(String start, String target, int limit){
+        Stack<String> stack = new Stack<>();
+        Set<String> visited = new HashSet<>();
+
+        stack.push(start);
+        parent.put(start, null);
+
+        while (!stack.isEmpty()){
+            String current = stack.pop();
+            visited.add(current);
+
+            if (current.equals(target)){
+                return true;
+            }else if (visited.size() <= limit){
+                for (String neighbor : adjList.get(current)) {
+                    if (!visited.contains(neighbor)) {
+                        stack.push(neighbor);
+                        parent.put(neighbor, current);
+                    }
+                }
+            }
+        }
+
+        return false;
+    }
+
+    public List<String> getPath(String start, String target){
+        List<String> path = new ArrayList<>();
+        String current = target;
+
+        while (current!=null){
+            path.add(current);
+            current = parent.get(current);
+        }
+        Collections.reverse(path);
+        return path;
+    }
+
+    //Khởi tạo phương thức xuất đồ thị ra màn hình
     public void display(){
         //Phương thức keySet dùng đê trả về các giá trị của các Key trong HashMap
         //Sử dụng foreach để duyệt từng Key có trong HashMap
