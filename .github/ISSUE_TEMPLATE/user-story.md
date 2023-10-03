@@ -15,3 +15,8 @@ assignees: ''
 * [document what you know]
 
 ###Acceptance Criteria:
+` ` `Gherkin 
+Given
+When
+Then
+` ` `
