@@ -152,9 +152,9 @@ public class Main {
         HCM_graph.addEdge("Quận Phú Nhuận", "Quận Gò Vấp");
         HCM_graph.addEdge("Quận Phú Nhuận", "Quận Tân Bình");
 
-        String start = "Hóc Môn";
-        String target = "Quận 10";
-        int limited = 4;
+        String start = "Quận 1";
+        String target = "Bình Chánh̀";
+        int limited = 2;
 
         if (HCM_graph.DLS(start, target, limited)) {
             System.out.println("Đường đi tồn tại");
@@ -163,7 +163,6 @@ public class Main {
         } else {
             System.out.println("Không có đường đi");
         }
-
-        //HCM_graph.display();
+        
     }
 }

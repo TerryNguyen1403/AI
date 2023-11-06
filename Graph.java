@@ -24,9 +24,9 @@ public class Graph {
         /* Nếu đỉnh source hoặc đỉnh destination ko có trong đồ thị
            Thì quăng ra màn hình 1 thông báo lỗi*/
         if (!adjList.containsKey(source)){
-            throw new IllegalArgumentException("Không có " + source + " trong đồ thị");
+            throw new IllegalArgumentException("Không có " + source + " trong thành phộ́");
         } else if (!adjList.containsKey(destination)) {
-            throw new IllegalArgumentException("Không có " + destination + " trong đồ thị");
+            throw new IllegalArgumentException("Không có " + destination + " trong thành phố");
         }
 
         /*Nếu các đỉnh có các quận thì sẽ tiến hành
@@ -53,7 +53,7 @@ public class Graph {
                 return true;
             }else if (visited.size() <= limit){
                 for (String neighbor : adjList.get(current)) {
-                    if (!visited.contains(neighbor)) {
+                    if  (!visited.contains(neighbor)) {
                         stack.push(neighbor);
                         parent.put(neighbor, current);
                     }
@@ -75,21 +75,4 @@ public class Graph {
         Collections.reverse(path);
         return path;
     }
-
-    //Khởi tạo phương thức xuất đồ thị ra màn hình
-    public void display(){
-        //Phương thức keySet dùng đê trả về các giá trị của các Key trong HashMap
-        //Sử dụng foreach để duyệt từng Key có trong HashMap
-        for (String district : adjList.keySet()) {
-        //Sau đó xuất các Key ra màn hình
-            System.out.print(district + ": ");
-        //Biến neighbor dùng để duyệt qua từng phần tử trong danh sách cạnh của đổ thị
-            for (String neighbor : adjList.get(district)) {
-                System.out.print(neighbor + " ");
-            }
-            System.out.println();
-        }
-    }
-
-    //Để hiểu rõ về display() , ae có thể đặt breakpoint rồi debug nha
 }
