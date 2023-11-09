@@ -75,4 +75,11 @@ public class Graph {
         Collections.reverse(path);
         return path;
     }
+
+    public boolean isValid(String startNode, String endNode){
+        if (adjList.containsKey(startNode) && adjList.containsKey(endNode)){
+            return true;
+        }
+        return false;
+    }
 }

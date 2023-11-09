@@ -152,9 +152,13 @@ public class Main {
         HCM_graph.addEdge("Quận Phú Nhuận", "Quận Gò Vấp");
         HCM_graph.addEdge("Quận Phú Nhuận", "Quận Tân Bình");
 
-        String start = "Quận 1";
-        String target = "Bình Chánh̀";
+        String start = "Quận Tân Phú";
+        String target = "Quận Phú Nhuận";
         int limited = 2;
+
+        if (!HCM_graph.isValid(start, target)){
+            throw new IllegalArgumentException("Có Quận không nằm trong Hồ Chí Minh!");
+        }
 
         if (HCM_graph.DLS(start, target, limited)) {
             System.out.println("Đường đi tồn tại");
